@@ -6,7 +6,7 @@
 # #################################################
 function display_help()
 {
-    echo "rocThust build & installation helper script"
+    echo "MIOpenTensile build & installation helper script"
     echo "./install [-h|--help] "
     echo "    [-h|--help] prints this help message"
     echo "    [-i|--install] install after build"
