@@ -106,6 +106,7 @@ Tensile::ContractionProblem create_tensile_problem(const miopen_tensile_matrix& 
     if (a.batch.num > 1 or b.batch.num > 1 or c.batch.num > 1)
     {
         auto batch = std::max({a.batch.num, b.batch.num, c.batch.num});
+printf("tensile gemm_strides\n");
         return Tensile::ContractionProblem::GEMM_Strides(is_transposed(a), 
                                                          is_transposed(b), 
                                                          get_data_type(a), 
@@ -127,6 +128,8 @@ Tensile::ContractionProblem create_tensile_problem(const miopen_tensile_matrix& 
                                                          1.0);
     }
     else
+    {
+printf("tensile gemm\n");
         return Tensile::ContractionProblem::GEMM(is_transposed(a),
                                                  is_transposed(b), 
                                                  is_transposed(a) ? a.lens[0] : a.lens[1], 
@@ -138,6 +141,7 @@ Tensile::ContractionProblem create_tensile_problem(const miopen_tensile_matrix& 
                                                  1.0, 
                                                  false, 
                                                  1);
+    }
 }
 
 extern "C" {
